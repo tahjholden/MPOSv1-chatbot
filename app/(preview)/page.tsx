@@ -13,6 +13,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { toast } from "sonner";
 import Link from "next/link";
 import { Markdown } from "@/components/markdown";
+import { Mic, Clipboard, Users, Basketball } from "lucide-react";
 
 const getTextFromDataUrl = (dataUrl: string) => {
   const base64 = dataUrl.split(",")[1];
@@ -145,11 +146,27 @@ export default function Home() {
 
   return (
     <div
-      className="flex flex-row justify-center pb-20 h-dvh bg-white dark:bg-zinc-900"
+      className="flex flex-col justify-center pb-20 h-dvh bg-white dark:bg-zinc-900"
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
     >
+      {/* Coach Dashboard Button */}
+      <div className="fixed top-0 left-0 right-0 bg-indigo-600 p-4 z-10 shadow-md">
+        <div className="max-w-4xl mx-auto">
+          <Link href="/coach-dashboard">
+            <button className="flex items-center justify-center gap-2 w-full bg-white hover:bg-indigo-50 text-indigo-700 font-semibold py-3 px-6 rounded-lg shadow-md transition-colors">
+              <Basketball size={20} className="text-orange-500" />
+              <span>Basketball Coach Dashboard</span>
+              <Mic size={18} className="ml-1" />
+            </button>
+          </Link>
+          <p className="text-center text-xs text-indigo-200 mt-2">
+            Access your voice-powered practice planning system
+          </p>
+        </div>
+      </div>
+
       <AnimatePresence>
         {isDragging && (
           <motion.div
@@ -166,7 +183,7 @@ export default function Home() {
         )}
       </AnimatePresence>
 
-      <div className="flex flex-col justify-between gap-4">
+      <div className="flex flex-col justify-between gap-4 mt-24">
         {messages.length > 0 ? (
           <div className="flex flex-col gap-2 h-full w-dvw items-center overflow-y-scroll">
             {messages.map((message, index) => (
