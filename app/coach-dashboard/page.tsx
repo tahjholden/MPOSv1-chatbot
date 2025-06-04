@@ -5,7 +5,7 @@ import { createClient } from '@supabase/supabase-js';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { toast } from 'sonner';
-import VoiceInputSimple from '@/components/voice-input-simple'; // Changed import
+import VoiceInputClean from '@/components/voice-input-clean'; // Changed import
 import {
   Calendar,
   CheckCircle,
@@ -44,7 +44,7 @@ export default function CoachDashboard() {
   });
   const [expandedSession, setExpandedSession] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [isProcessingVoice, setIsProcessingVoice] = useState(false); // Kept for overlay, though VoiceInputSimple handles internal state
+  const [isProcessingVoice, setIsProcessingVoice] = useState(false); 
   const [coachInfo, setCoachInfo] = useState<any>(null);
   const router = useRouter();
 
@@ -380,7 +380,7 @@ export default function CoachDashboard() {
                 </div>
                 
                 <div className="p-4">
-                  <VoiceInputSimple 
+                  <VoiceInputClean 
                     coachId={DEFAULT_COACH_ID}
                     groupId={DEFAULT_TEAM_ID}
                     onProcessingComplete={handleVoiceProcessingComplete}
